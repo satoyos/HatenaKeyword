@@ -19,8 +19,9 @@ describe 'DailyKeywordExtractor' do
       extractor.hot_keywords.tap do |words|
         expect(words).to be_an Array
         expect(words.size).to be 20
+        expect(words.first).to eq 'キヤノン'
+        expect(words.last).to eq 'パスカル'
       end
     end
   end
-
 end

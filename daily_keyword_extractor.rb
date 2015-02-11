@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'pp'
 
 class DailyKeywordExtractor
   attr_reader :doc
@@ -19,6 +20,6 @@ class DailyKeywordExtractor
   end
 
   def hot_keywords
-    [1]
+    @doc.xpath('//a[@class="hot-title"]').to_a.map{|node| node.inner_text}
   end
 end
