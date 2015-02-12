@@ -12,11 +12,8 @@ class DailyKeywordExtractor
   def doc_from_html(path)
     raise 'パラメータで解析対象のHTMLファイルのパスを指定してください。' unless path
     raise "指定されたパスのファイルが存在しません。[#{path}]" unless File.exist? path
-    doc = nil
-    File.open(path, 'r:utf-8') do |file|
-      doc = Nokogiri::HTML(file)
-    end
-    doc
+    text = File.read(path, encoding: Encoding::EUC_JP).encode(Encoding::UTF_8, invalid: :replace)
+    Nokogiri::HTML(text)
   end
 
   def hot_keywords

@@ -23,5 +23,17 @@ describe 'DailyKeywordExtractor' do
         expect(words.last).to eq 'パスカル'
       end
     end
+    context '2015-02-12のHTML' do
+      TEST_HTML_2 = 'spec/はてなキーワード2015-02-12.html'
+      let(:extractor){DailyKeywordExtractor.new(TEST_HTML_2)}
+      it '20個のホットキーワードを返す' do
+        extractor.hot_keywords.tap do |words|
+          expect(words).to be_an Array
+          expect(words.size).to be 20
+          expect(words.first).to eq 'Windows 8'
+          expect(words.last).to eq 'NTTドコモ'
+        end
+      end
+    end
   end
 end
